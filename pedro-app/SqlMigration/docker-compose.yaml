@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql2023
+    command: /bin/bash /scripts/entrypoint.sh
+    ports:
+      - 1433:1433
+    user: root
+    volumes:
+      - dbdata:/var/opt/mssql
+      - ./db/scripts:/scripts
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password1234 
+      - MSSQL_DB=NETCORE 
+
+  flyway:
+    image: redgate/flyway
+    container_name: flyway
+    command: migrate -baselineOnMigrate="true" -user=sa -password=Password1234 -connectRetries=60
+    volumes:
+      - ./flyway/conf/:/flyway/conf
+      - ./flyway/sql/:/flyway/sql
+    depends_on:
+      - db
+volumes:
+  dbdata:

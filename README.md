@@ -27,3 +27,27 @@ For example, the first week of this year should be 2023-1.
 7) Verify if the employee has not an active bonus, then he/she won't receive extra money, so the week total payment must be equal than the regular week payment.
 8) Calling the whole active employees, verify if there is no more than 2 active employees, in that case we must return an empty list.
 
+
+
+Instructions:
+============
+
+
+Database: (running docker required)
+At location employee-week-payment\pedro-app\SqlMigration
+Execute in a terminal, next instruction: docker-compose up
+
+Backend:
+Open in Visual Sutudio 2022 payment\NETCORE\NETCORE\Netcore.sln solution
+- Build
+- Run
+
+Front End:
+Open in Visual Code and use a terminal to execute next instructions at \pedro-app location
+- npm install
+- npm start
+
+Browser:
+http://localhost:3000/login
+user: admin@email.com
+password: corbin
